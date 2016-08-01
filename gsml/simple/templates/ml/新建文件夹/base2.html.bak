@@ -1,0 +1,78 @@
+{% load staticfiles %}  
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"  />
+<title>长沙市统计局工商名录查询系统</title>
+<link href="{% static "css/style.css"%}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css"  href= "{% static "css/css-table.css"%}" /> 
+<script type="text/javascript" src="{% static "js/jquery.min.js"%}"></script>
+<script type="text/javascript"  src="{% static "js/nav.js"%}"></script>
+<script type="text/javascript" src= "{% static "js/jquery-1.2.6.min.js"%}" ></script>
+<script type="text/javascript" src= "{% static "js/style-table.js"%}" ></script>
+</head>
+<body>
+
+<div id="top_bg">
+	<div class="top">
+		<a class="logo_l" href="/" title="返回首页"></a>
+		<!--导航开始-->
+		<div class="nav_z">
+			<ul id="navul" class="cl">
+				<li>
+					<a href="#">商事登记</a>
+					<ul>
+						<li><a href="#">企业登记</a></li>
+						<li><a href="#">个体户登记</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">工商登记</a>
+					<ul>
+						<li><a href="#">注销企业</a></li>
+						<li><a href="#">新登企业</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">数据查询</a>
+				</li>
+				<!--可在此处直接添加导航-->
+			</ul>
+		</div><!--导航结束-->
+		<script  type="text/javascript"> 
+		$(".navbg").capacityFixed();
+		</script>
+
+	</div>
+
+    <h1><center>{{ title }}</center></h1>  
+    {% block content %}  
+    {% endblock %}  
+ 
+    <div class="pagination" align="center">
+    <span class="step-links">
+    	
+        {% if posts.has_previous %}
+        	<a href="?page=1">第一页</a>
+            <a href="?page={{ posts.previous_page_number }}">上一页</a>
+        {% else %}
+            <span class='empty'></span>
+        {% endif %}
+        <span class="current">
+             第{{ posts.number }}页     共{{ posts.paginator.num_pages }}页
+        </span>
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">下一页</a>
+            <a href="?page={{ posts.paginator.num_pages }}">尾页</a>
+        {% else %}
+            <span class='empty'></span>                             
+        {% endif %}
+        
+		<a href="/exportcsv/?exportfiletype={{exportfiletype}}&filename=my.csv">导出{{ title }}</a>
+		
+    </span>
+	</div>
+</body>
+</html>

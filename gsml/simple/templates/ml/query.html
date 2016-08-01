@@ -1,0 +1,101 @@
+{% extends "ml/base.html" %}  
+
+
+{% block content %}  
+
+ 
+
+<p>系统正在开发中…… </p>
+<form name="form1" method="post" action="/query/">
+{% csrf_token %}
+<ul>
+<li>
+注册号<input name='zch' type="text" size="10"/>
+</li>
+<li>
+名　称
+  <input name='qyname' type="text" size="10"/>
+</li>
+<li>
+注册资本
+  <input name='zczb1' type="text" size="10"/>
+  <input name='zczb2' type="text" size="10"/>
+</li>
+<li>
+登记机关
+  <select name="djjg"  multiple id="djjg">
+		<option value =""> </option>
+		<option value ="湖南省工商行政管理局">湖南省工商行政管理局</option>
+		<option value ="长沙市工商行政管理局">长沙市工商行政管理局</option>
+		<option value ="长沙市工商行政管理局芙蓉分局">长沙市工商行政管理局芙蓉分局</option>
+		<option value ="长沙市工商行政管理局天心分局">长沙市工商行政管理局天心分局</option>
+		<option value ="长沙市工商行政管理局岳麓分局">长沙市工商行政管理局岳麓分局</option>
+		<option value ="长沙市工商行政管理局开福分局">长沙市工商行政管理局开福分局</option>
+		<option value ="长沙市工商行政管理局雨花分局">长沙市工商行政管理局雨花分局</option>
+		<option value ="长沙市工商行政管理局望城分局">长沙市工商行政管理局望城分局</option>
+		<option value ="长沙县工商行政管理局">长沙县工商行政管理局</option>
+		<option value ="宁乡县工商行政管理局">宁乡县工商行政管理局</option>
+		<option value ="浏阳市工商行政管理局">浏阳市工商行政管理局</option>
+		<option value ="长沙市工商行政管理局高新技术产业开发分局">长沙市工商行政管理局高新技术产业开发分局</option>
+		<option value ="长沙市工商行政管理局外管分局">长沙市工商行政管理局外管分局</option>
+		<option value ="长沙市工商行政管理局市场分局">长沙市工商行政管理局市场分局</option>
+		<option value ="长沙市工商行政管理局经济技术开发分局">长沙市工商行政管理局经济技术开发分局</option>
+  </select>
+</li>
+
+</ul>
+
+  <p>&nbsp;</p>
+  <p>
+    <input type="submit" name="tj" id="tj" value="提交">
+  </p>
+</form>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"> 
+<thead> 
+<tr> 
+<th>注册号</th> 
+<th>名称</th> 
+<th>法定代表人</th> 
+<th>主营项目类别</th> 
+
+<th>住所(经营场所)</th> 
+<th>注册资本-万元(人民币)</th> 
+<th>商事主体类型</th> 
+<th>成立日期</th> 
+<th>营业期限</th> 
+<th>核发日期</th> 
+<th>登记机关</th> 
+<th>状态</th> 
+<th>经营范围</th> 
+<th>统一社会信用代码</th> 
+</tr> 
+</thead> 
+<tbody>
+
+{% for post in posts %}  
+<tr>
+<td><a href="/qyxx?zch={{ post.zch}}" target='_blank'>{{ 	post.zch}}</a></td>
+<td>{{ post.mcyename }}</td>
+<td>{{ post.fddbri }}</td>
+<td>{{ post.zyxmlb }}</td>
+
+<td>{{ post.dz }}</td>
+<td>{{ post.rjzczb }}</td>
+<td>{{ post.qylx }}</td>
+<td>{{ post.clrq }}</td>
+<td>{{ post.yyqx }}</td>
+<td>{{ post.hzrq }}</td>
+<td>{{ post.djjg }}</td>
+<td>{{ post.zt }}</td>
+<td>{{ post.jyfw }}</td>
+<td>{{ post.xydm }}</td>
+
+</tr>
+{% endfor %}  
+
+
+
+  </tbody>
+</table>
+

@@ -1,0 +1,58 @@
+
+{% load staticfiles %}  
+
+
+<html>  
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>长沙市统计局工商名录查询系统</title>
+</head>
+<link rel="stylesheet" type="text/css"  href= "{% static "css/css-table.css"%}" /> 
+<script type="text/javascript" src= "{% static "js/jquery-1.2.6.min.js"%}" ></script>
+<script type="text/javascript" src= "{% static "js/style-table.js"%}" ></script>
+
+
+  <body>  
+  
+<ul id="nav"> 
+    <li><a href="/">首页</a></li> 
+    <li><a href="/qiye/">商事登记平台-企业登记</a></li> 
+    <li><a href="/geti/">商事登记平台-个体户登记</a></li> 
+    <li><a href="/zhuxiao/">工商局-注销企业</a></li> 
+    <li><a href="/sheli">工商局-新登企业</a></li> 
+    <li><a href="/static/html/query.html" target='_blank'>数据查询</a></li>
+    <li><a href="http://ssfw.changsha.gov.cn/indexinfo.jsp" target='_blank'>长沙市商事服务管理信息平台</a></li> 
+    <li><a href="http://www.csaic.gov.cn/RegPlac/MoreList.html" target='_blank'>市工商局注册登记公告</a></li>  
+</ul> 
+
+  
+    <h1><center>{{ title }}</center></h1>  
+    {% block content %}  
+    {% endblock %}  
+ 
+    <div class="pagination" align="center">
+    <span class="step-links">
+    	
+        {% if posts.has_previous %}
+        	<a href="?page=1">第一页</a>
+            <a href="?page={{ posts.previous_page_number }}">上一页</a>
+        {% else %}
+            <span class='empty'></span>
+        {% endif %}
+        <span class="current">
+             第{{ posts.number }}页     共{{ posts.paginator.num_pages }}页
+        </span>
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">下一页</a>
+            <a href="?page={{ posts.paginator.num_pages }}">尾页</a>
+        {% else %}
+            <span class='empty'></span>                             
+        {% endif %}
+        
+		<a href="/exportcsv/?exportfiletype={{exportfiletype}}&filename=my.csv">导出{{ title }}</a>
+		
+    </span>
+	</div>
+ 
+  </body>  
+</html>

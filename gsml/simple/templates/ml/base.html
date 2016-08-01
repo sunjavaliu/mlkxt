@@ -1,0 +1,124 @@
+
+{% load staticfiles %}  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+<title>长沙市统计局工商名录查询系统</title>
+<link rel="stylesheet" type="text/css"  href= "{% static "ml/css/css-table.css"%}" /> 
+<script type="text/javascript" src= "{% static "ml/js/jquery-1.2.6.min.js"%}" ></script>
+<script type="text/javascript" src= "{% static "ml/js/style-table.js"%}" ></script>
+<style type="text/css">
+<!--
+/*通用*/
+/*body{font:12px Arial,Verdana,Tahoma,"宋体";}*/
+
+*{padding:0px;margin:0px;}
+* li{list-style:none;}
+a{text-decoration:none;color:#20537A;}
+a:hover{text-decoration:underline;}
+
+.clearfix:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+    _zoom: 1;
+}
+*+html .clearfix {
+	overflow:auto;
+}
+
+.menu_navcc{width:1025px; margin:0 auto;}
+.menu_nav{width:1025px;height:48px;background:url("{% static "ml/img/nav_bg.gif"%}") repeat-x;float:left;margin-top:0px;}
+.menu_nav .nav_content{padding-left:25px;background:url("{% static "ml/img/nav_l_bg.gif"%}") no-repeat;float:left;}
+.menu_nav .nav_content li{width:88px;height:48px;padding-left:15px;padding-right:13px;background:url("{% static "ml/img/nav_li_right.gif"%}") no-repeat right center;float:left;line-height:48px;text-align:center;font-size:14px;font-weight:bold;}
+.menu_nav .nav_content li a{color:#fff;width:88px;height:48px;display:block;}
+.menu_nav .nav_content li.current{line-height:37px;}
+.menu_nav .nav_content li em{background:url("{% static "ml/img/bid_new.gif"%}") no-repeat;width:35px;height:21px;display:inline-block;position:absolute;top:-20px;left:40px;}
+
+.menu_nav .nav_content li.current a,.menu_nav .nav_content li a:hover{width:88px;height:37px;background:url("{% static "ml/img/nav_li_current.gif"%}") no-repeat;display:block;color:#fff;}
+.menu_nav .nav_content li a:hover{background:url("{% static "ml/img/nav_li_hover.gif"%}") no-repeat;line-height:37px;text-decoration:none;}
+
+.menu_nav_right{padding-right:20px;background:url("{% static "ml/img/nav_r_bg.gif"%}") no-repeat right top;float:right;margin-left:50px;padding-top:13px;height:23px;padding-bottom:12px;}
+p{
+margin-bottom:5px}
+-->
+
+</style>
+</head>
+
+<body  style="text-align:center;background-image:url('{% static "ml/img/body_bg.jpg"%}'); background-repeat: repeat-x; " >
+<div style="width:1026px;margin:0px auto;clear:both"> 
+	<img src="{% static "ml/img/banner.jpg"%}"/>
+</div> 
+
+<!--nav,start-->
+<div class="menu_navcc">
+<div class="menu_nav clearfix">
+<ul class="nav_content">
+<li class="current"><a href="/" title="首页"><span>首页</span></a></li>
+<li><a href="/qiye/" title="商事-企业"><span>商事-企业</span></a></li>
+<li><a href="/geti/" title="商事-个体户"><span>商事-个体户</span></a></li>
+<li><a href="/zhuxiao/" title="工商-注销"><span>工商-注销</span></a></li>
+<li><a href="/sheli/" title="工商-新登"><span>工商-新登</span></a></li>
+<li><a href="/static/html/query.html" title="数据查询" target='_blank'><span>数据查询</span></a></li>
+<li><a href="http://ssfw.changsha.gov.cn/indexinfo.jsp" target='_blank'><span>市商事平台</span></a></li>
+<!-- <li><a href="http://ssfw.changsha.gov.cn/indexinfo.jsp" target='_blank'><span>市商事平台</span></a></li>  -->
+<li><a href="http://www.csaic.gov.cn/RegPlac/MoreList.html" target='_blank'><span>市工商平台</span></a></li>  
+<!-- <li style="position:relative;"><a href="#" title="导航菜单"><span>数据查询</span></a><em></em></li> -->
+
+</ul>
+<div class="menu_nav_right">
+</div>
+</div>
+</div>
+<!--nav,end-->
+
+<div style="width:1025px;margin:2px auto;clear:both">
+
+
+<div style="height:20px;text-align: left;line-height: 20px;clear:both">当前位置：{{ title }}，登录用户：{{ user }} ，<a href="/admin/ajax_logout/">退出</a></div>
+
+ 
+
+<div>
+    {% block content %} 
+	
+    {% endblock %}  
+</div> 
+    <div class="pagination" align="center">
+    <span class="step-links">
+    	
+        {% if posts.has_previous %}
+        	<a href="?page=1">第一页</a>
+            <a href="?page={{ posts.previous_page_number }}">上一页</a>
+        {% else %}
+            <span class='empty'></span>
+        {% endif %}
+
+		{% if posts.has_previous or posts.has_next %}
+        <span class="current">
+             第{{ posts.number }}页     共{{ posts.paginator.num_pages }}页
+        </span>
+		{% endif %}
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">下一页</a>
+            <a href="?page={{ posts.paginator.num_pages }}">尾页</a>
+        {% else %}
+            <span class='empty'></span>                             
+        {% endif %}
+
+        {% if posts.has_previous or posts.has_next %}
+		<a href="/exportcsv/?exportfiletype={{exportfiletype}}&filename=my.csv">导出{{ title }}</a>
+		{% endif %}
+
+    </span>
+	</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends "base.html" %}  
+
+
+{% block content %}  
+
+<table align="center" width="100%"> 
+<thead> 
+<tr> 
+<th>注册号</th> 
+<th>名称</th> 
+<th>法定代表人</th> 
+<th>主营项目类别</th> 
+
+<th>住所(经营场所)</th> 
+<th>注册资本-万元(人民币)</th> 
+<th>商事主体类型</th> 
+<th>成立日期</th> 
+<th>营业期限</th> 
+<th>核发日期</th> 
+<th>登记机关</th> 
+<th>状态</th> 
+<th>经营范围</th> 
+<th>统一社会信用代码 </th> 
+</tr> 
+</thead> 
+<tbody>
+
+{% for post in posts %}  
+<tr>
+<td><a href="/qyxx?zch={{ post.zch}}" target='_blank'>{{ post.zch}}</a></td>
+<td>{{ post.mcyename }}</td>
+<td>{{ post.fddbri }}</td>
+<td>{{ post.zyxmlb }}</td>
+
+<td>{{ post.dz }}</td>
+<td>{{ post.rjzczb }}</td>
+<td>{{ post.qylx }}</td>
+<td>{{ post.clrq }}</td>
+<td>{{ post.yyqx }}</td>
+<td>{{ post.hzrq }}</td>
+<td>{{ post.djjg }}</td>
+<td>{{ post.zt }}</td>
+<td>{{ post.jyfw }}</td>
+<td>{{ post.xydm }}</td>
+
+</tr>
+{% endfor %}  
+
+
+
+  </tbody>
+</table>
+
+{% endblock %}
+    
+ 
