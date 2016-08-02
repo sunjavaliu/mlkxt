@@ -57,13 +57,13 @@ input.text {
 }
 /* main container */
 #main {
-	width:1210px;
+	width:992px;
 	margin:0 auto;
 }
 /* header */
 #header {
 	position:relative;
-	width:1210px;
+	width:992px;
 	height:106px;
 	background:url(../images/bg-header.gif) no-repeat left bottom;
 }
@@ -120,8 +120,8 @@ input.text {
 /* middle */
 #middle {
 	float:left;
-	width:1210px;
-	background:url(../images/bg-middle1210.gif) repeat-y left;
+	width:967px;
+	background:url(../images/bg-middle.gif) repeat-y left;
 	padding:0 13px 0 12px;
 }
 /* left column */
@@ -139,7 +139,7 @@ input.text {
 /* center column */
 #center-column {
 	float:left;
-	width:1000px;
+	width:614px;
 	#background:url(../images/bg-center-column.jpg) no-repeat left top;
 	min-height:584px;
 	padding:12px 16px 0 13px;
@@ -252,7 +252,7 @@ div.table {
 }
 table.listing {
 	border-bottom:1px solid #9097A9;
-	width:990px;
+	width:613px;
 	padding:0;
 	margin:0;
 	border:1px solid #9097A9;

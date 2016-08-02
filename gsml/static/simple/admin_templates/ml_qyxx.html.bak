@@ -1,8 +1,8 @@
 			<script src="../../static/simple/js/ml/ml_qyxx.js"></script>
 			<div class="top-bar">
-				<a href="#" class="button" id="add_btn">添加管理员</a>
-				<h1>当前位置</h1>
-				<div class="breadcrumbs"><span>管理员管理</span> - <span>管理员列表</span></div>
+				<a href="#" class="button" id="add_btn">添加管理员ss</a>
+				<h1>当前sss位置</h1>
+				<div class="breadcrumbs"><span>管理员管理sss</span> - <span>管理员列sss表</span></div>
 			</div>
 			<div class="table">
 				<img src="../../static/simple/images/bg-th-left.gif" alt="" class="left" height="7" width="8" />

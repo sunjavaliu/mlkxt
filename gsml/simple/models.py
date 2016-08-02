@@ -190,103 +190,135 @@ class Data(models.Model):
 
 
 class ssdata(models.Model):
-    '''
-    title = models.CharField(max_length = 150)
-    content = models.TextField()
-    timestamp = models.DateTimeField()
-    '''
-    
-    zch = models.TextField()
-    mcyename = models.TextField()
-    fddbri = models.TextField()
-    zyxmlb = models.TextField()
-    dz = models.TextField()
-    rjzczb = models.TextField()
-    qylx = models.TextField()
-    clrq = models.TextField()
-    yyqx = models.TextField()
-    hzrq = models.TextField()
-    djjg = models.TextField()
-    zt = models.TextField()
-    jyfw = models.TextField()
-    xydm = models.TextField() 
-    #def __unicode__(self):
-    #    return self.name
-    
-    class Meta:
-        db_table = 'ssjibenxinxi'   #指定表名
-        ordering = ['-hzrq']        #按核准日期排序
-
+	'''
+	title = models.CharField(max_length = 150)
+	content = models.TextField()
+	timestamp = models.DateTimeField()
+	'''
+	
+	zch = models.TextField()
+	mcyename = models.TextField()
+	fddbri = models.TextField()
+	zyxmlb = models.TextField()
+	dz = models.TextField()
+	rjzczb = models.TextField()
+	qylx = models.TextField()
+	clrq = models.TextField()
+	yyqx = models.TextField()
+	hzrq = models.TextField()
+	djjg = models.TextField()
+	zt = models.TextField()
+	jyfw = models.TextField()
+	xydm = models.TextField() 
+	#def __unicode__(self):
+	#	return self.name
+	def toJSON(self):
+		return to_json(self)
+	
+	#获取分页数据，静态方法
+	@staticmethod
+	def getList(page, page_size):
+		total = ssdata.objects.all().count()
+		page_count = commons.page_count(total, page_size)
+	
+		offset = (page - 1) * page_size
+		limit = offset + page_size
+		ss_list = ssdata.objects.all().order_by("-id")[offset:limit]
+	
+		ss_list_json = []
+		for ss in ss_list:		
+			item = json.loads(ss.toJSON())
+			#item["add_time"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(item["add_time"]))
+			
+			#移除密码
+			#del item["pwd"]
+			ss_list_json.append(item)
+	
+		data = {
+			"page_size": page_size,
+			"page_count": page_count,
+			"total": total,
+			"page": page,
+			"list": ss_list_json,
+		}
+		print("liu2")
+		print(data)
+		return data
+	
+	class Meta:
+		db_table = 'ssjibenxinxi'   #指定表名
+		ordering = ['-hzrq']		#按核准日期排序
+		
 class gszxdata(models.Model):
-    '''
-    title = models.CharField(max_length = 150)
-    content = models.TextField()
-    timestamp = models.DateTimeField()
-    '''
-    
-    zch = models.TextField()
-    qiyename = models.TextField()
-    hzriqi = models.TextField()
-    djjg = models.TextField()
-    
-    def __unicode__(self):
-        return self.name
-    
-    class Meta:
-        db_table = 'gsqiyezhuxiao'   #指定表名
-        ordering = ['-hzriqi']        #按核准日期排序    
-        
-        
+	'''
+	title = models.CharField(max_length = 150)
+	content = models.TextField()
+	timestamp = models.DateTimeField()
+	'''
+	
+	zch = models.TextField()
+	qiyename = models.TextField()
+	hzriqi = models.TextField()
+	djjg = models.TextField()
+	
+	def __unicode__(self):
+		return self.name
+	
+	class Meta:
+		db_table = 'gsqiyezhuxiao'   #指定表名
+		ordering = ['-hzriqi']		#按核准日期排序	
+		
+		
 class gssldata(models.Model):
-    '''
-    title = models.CharField(max_length = 150)
-    content = models.TextField()
-    timestamp = models.DateTimeField()
-    '''
-    
-    zch = models.TextField()
-    qiyename = models.TextField()
-    hzriqi = models.TextField()
-    djjg = models.TextField()
-    
-    def __unicode__(self):
-        return self.name
-    
-    class Meta:
-        db_table = 'gsqiyesheli'   #指定表名
-        ordering = ['-hzriqi']        #按核准日期排序    
-        
-        
+	'''
+	title = models.CharField(max_length = 150)
+	content = models.TextField()
+	timestamp = models.DateTimeField()
+	'''
+	
+	zch = models.TextField()
+	qiyename = models.TextField()
+	hzriqi = models.TextField()
+	djjg = models.TextField()
+	
+	def __unicode__(self):
+		return self.name
+	
+	class Meta:
+		db_table = 'gsqiyesheli'   #指定表名
+		ordering = ['-hzriqi']		#按核准日期排序	
+		
+		
 #############
 
 
 class Tag(models.Model):
-    """docstring for Tags"""
-    tag_name = models.CharField(max_length=20, blank=True)
-    create_time = models.DateTimeField(auto_now_add=True)
+	"""docstring for Tags"""
+	tag_name = models.CharField(max_length=20, blank=True)
+	create_time = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
-        return self.tag_name
+	def __unicode__(self):
+		return self.tag_name
 
 
 class Author(models.Model): 
-    """docstring for Author"""
-    name = models.CharField(max_length=30)
-    email = models.EmailField(blank=True)
-    website = models.URLField(blank=True)
+	"""docstring for Author"""
+	name = models.CharField(max_length=30)
+	email = models.EmailField(blank=True)
+	website = models.URLField(blank=True)
 
-    def __unicode__(self):
-        return u'%s' % (self.name)
+	def __unicode__(self):
+		return u'%s' % (self.name)
 
 
 class Blog(models.Model):
-    """docstring for Blogs"""
-    caption = models.CharField(max_length=50)
-    author = models.ForeignKey(Author)
-    tags = models.ManyToManyField(Tag, blank=True)
-    content = models.TextField()
-    publish_time = models.DateTimeField(auto_now_add=True)
-    update_time = models.DateTimeField(auto_now=True)
+	"""docstring for Blogs"""
+	caption = models.CharField(max_length=50)
+	author = models.ForeignKey(Author)
+	tags = models.ManyToManyField(Tag, blank=True)
+	content = models.TextField()
+	publish_time = models.DateTimeField(auto_now_add=True)
+	update_time = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
-        return u'%s %s %s' % (self.caption, self.author, self.publish_time)
+	def __unicode__(self):
+		return u'%s %s %s' % (self.caption, self.author, self.publish_time)

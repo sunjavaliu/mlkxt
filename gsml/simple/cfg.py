@@ -68,8 +68,8 @@ admin_menu_list = [
 					},
 					{
 						"id": 12,
-						"name": "工商个体户",
-						"url": "admin_list.html",
+						"name": "工商企业查询",
+						"url": "ml_qyxx.html",
 					},
 				]
 			},

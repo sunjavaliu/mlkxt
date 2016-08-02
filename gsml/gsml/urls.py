@@ -10,6 +10,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 #from minglu import views
 from simple import views_site
 from simple import views_admin
+from simple import views_ml
 from simple import views
 from django.views.static import  serve
 #import xadmin                 # 添加该行
@@ -69,6 +70,8 @@ urlpatterns =[
 	#url(r'^static/(?P<path>.*)$',serve,{'document_root':settings.STATIC_ROOT}),  
 	url(r'^exportcsv/$', views.exportCSV),
 	url(r'^query/$', views.querydata),
+	url(r'^admin/ajax_ml_list$', views_ml.ajax_ml_list),
+	
 	
 	
 	

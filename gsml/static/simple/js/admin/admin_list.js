@@ -73,7 +73,7 @@ function do_page() {
 $(function() {
 
 	$.getJSON(
-		"ajax_admin_list?random=" + Math.random(),
+		"ajax_admin_list?randomp=" + Math.random(),
 		function(data) {
 			if(data.data.page_count == 1) {
 				$(".pagetable").hide(); //只有一页的话就不显示分页导航

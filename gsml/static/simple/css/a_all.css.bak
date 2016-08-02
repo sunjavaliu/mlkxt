@@ -57,13 +57,13 @@ input.text {
 }
 /* main container */
 #main {
-	width:992px;
+	width:1210px;
 	margin:0 auto;
 }
 /* header */
 #header {
 	position:relative;
-	width:992px;
+	width:1210px;
 	height:106px;
 	background:url(../images/bg-header.gif) no-repeat left bottom;
 }
@@ -120,7 +120,7 @@ input.text {
 /* middle */
 #middle {
 	float:left;
-	width:967px;
+	width:1210px;
 	background:url(../images/bg-middle.gif) repeat-y left;
 	padding:0 13px 0 12px;
 }
@@ -139,8 +139,8 @@ input.text {
 /* center column */
 #center-column {
 	float:left;
-	width:614px;
-	background:url(../images/bg-center-column.jpg) no-repeat left top;
+	width:1000px;
+	#background:url(../images/bg-center-column.jpg) no-repeat left top;
 	min-height:584px;
 	padding:12px 16px 0 13px;
 }	
@@ -252,7 +252,7 @@ div.table {
 }
 table.listing {
 	border-bottom:1px solid #9097A9;
-	width:613px;
+	width:990px;
 	padding:0;
 	margin:0;
 	border:1px solid #9097A9;
