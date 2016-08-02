@@ -1,6 +1,6 @@
 ﻿			<script src="../../static/simple/js/admin/admin_list.js"></script>
 			<div class="top-bar">
-				<a href="#" class="button" id="add_btn">添加用户</a>
+				<a href="#" class="button" id="add_btn">添加管理员</a>
 				<div class="breadcrumbs"><span>当前位置</span> - <span>用户列表</span></div>
 			</div>
 			<div class="table">

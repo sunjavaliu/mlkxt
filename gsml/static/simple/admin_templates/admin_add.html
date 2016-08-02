@@ -1,7 +1,6 @@
 ﻿			<script src="../../static/simple/js/admin/admin_add.js"></script>
 			<div class="top-bar">				
-				<h1>当前位置</h1>
-				<div class="breadcrumbs"><span>管理员管理</span> - <span>添加管理员</span></div>
+				<div class="breadcrumbs"><span>当前位置</span> - <span>添加用户</span></div>
 			</div>
 			<div class="table">
 				<img src="../../static/simple/images/bg-th-left.gif" alt="" class="left" height="7" width="8" />
@@ -12,7 +11,7 @@
 					</tr>
 					<tr>
 						<td class="first" width="172"><strong>用户名</strong></td>
-						<td class="last"><input class="text" type="text" id="name" /></td>
+						<td class="last"><input class="text" type="text" id="name"   />用户名请以6位地址码开头！</td>
 					</tr>
 					<tr class="bg">
 						<td class="first"><strong>密码</strong></td>
@@ -21,6 +20,15 @@
 					<tr>
 						<td class="first"><strong>确认密码</strong></td>
 						<td class="last"><input class="text" type="password" id="pwd2" /></td>
+					</tr>
+					<tr>
+						<td class="first"><strong>用户级别</strong></td>
+						<td class="last">
+							<select id="userlevel">
+							  <option value="0">普通操作用户</option>
+							  <option value="9">管理用户</option>
+							</select>
+						</td>
 					</tr>
 					<tr class="bg">
 						<td class="first">&nbsp;</td>

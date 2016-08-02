@@ -6,6 +6,7 @@ $(function() {
 		var name = $("#name").val();
 		var pwd = $("#pwd").val();
 		var pwd2 = $("#pwd2").val();
+		var userlevel = $("#userlevel").val();
 		
 		var msg = "";
 		if(name == "")
@@ -19,7 +20,7 @@ $(function() {
 			alert(msg);
 		else {
 			$.getJSON(
-				"ajax_admin_add?name=" + encodeURIComponent(name) + "&pwd=" + hex_md5(pwd) + "&pwd2=" + hex_md5(pwd2) + "&random=" + Math.random(),
+				"ajax_admin_add?name=" + encodeURIComponent(name) + "&pwd=" + hex_md5(pwd) + "&pwd2=" + hex_md5(pwd2) +"&userlevel=" + encodeURIComponent(userlevel) + "&random=" + Math.random(),
 				function(data) {
 					if(data.code == 1) {
 						alert(data.desc);

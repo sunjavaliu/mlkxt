@@ -2,7 +2,7 @@
 body {
 	margin:0;
 	padding:0;
-	background:#BBD9EE;
+	/*background:#BBD9EE;*/
   	color:#000;
 	font-family:tahoma,arial,sans-serif;
 	font-size:12px;
@@ -64,8 +64,9 @@ input.text {
 #header {
 	position:relative;
 	width:1210px;
-	height:106px;
-	background:url(../images/bg-header.gif) no-repeat left bottom;
+	/*height:106px;*/
+	height:30px;
+	background:url(../images/bg-header1210.gif)no-repeat ; /*left bottom;*/
 }
 	
 /* header tabs */
@@ -120,9 +121,10 @@ input.text {
 /* middle */
 #middle {
 	float:left;
-	width:1210px;
+	width:1220px;
 	background:url(../images/bg-middle1210.gif) repeat-y left;
-	padding:0 13px 0 12px;
+	#padding:0 13px 0 12px;
+	padding:0;
 }
 /* left column */
 #left-column {
@@ -139,10 +141,10 @@ input.text {
 /* center column */
 #center-column {
 	float:left;
-	width:1000px;
-	#background:url(../images/bg-center-column.jpg) no-repeat left top;
+	width:1012px;
+	/*background:url(../images/bg-center-column.jpg) no-repeat left top;*/
 	min-height:584px;
-	padding:12px 16px 0 13px;
+	padding:2px 16px 0 13px;
 }	
 * html #center-column {
 	height:584px;
@@ -152,7 +154,7 @@ input.text {
 #footer {
 	float:left;
 	width:100%;
-	background:url(../images/bg-footer.gif) no-repeat;
+	background:url(../images/bg-footer1210.gif) no-repeat;
 	height:15px;
 }
 	
@@ -198,6 +200,7 @@ ul.navhide {
 	width:142px;
 	height:25px;
 	background:url(../images/bg-left-link.gif);
+	/*background:url(../../ml/img/nav_li_hover.gif);*/
 	margin:0 0 4px 0;
 	font-weight:bold;
 	padding:0 0 0 9px;
@@ -208,16 +211,29 @@ ul.navhide {
 /* center column styles */
 .top-bar {
 	float:left;
-	width:603px;
-	border-left:2px solid #f70;
-	padding:0 0 0 9px;
-	margin:0 0 4px 0;
+	width:1000px;
+	/*border-left:2px solid #f70;*/
+	padding:0 0 0 0px;
+	margin:0 0 0px 0;
+	height:35px;
 }
+
+.breadcrumbs {
+	float:left;
+	padding:0 0 0 0px;
+	margin:0 0 0px 0;
+	text-align:left;
+}
+
+.breadcrumbs  .span {
+	text-align:left;
+}
+
 /* text page header */
 .top-bar h1 {
 	font:20px/21px verdana,sans-serif;
 	color:#43729F;
-	margin:0 0 4px 0;
+	margin:0 0 0px 0;
 }
 /* orange button */
 .top-bar a.button {
@@ -247,7 +263,7 @@ ul.navhide {
 div.table {
 	float:left;
 	position:relative;
-	width:614px;
+	width:991px;
 	margin:0 0 37px 0;
 }
 table.listing {
@@ -289,7 +305,7 @@ table.listing th {
 }
 table.listing td {
 	background:#D8D8D8;
-	color:#000;
+	/*color:#000;*/
 	padding:3px 5px;
 }
 table.listing .bg td {
@@ -390,3 +406,4 @@ div.table .select select {
 .buttons input {
 	margin:0 0 6px 0;
 }
+

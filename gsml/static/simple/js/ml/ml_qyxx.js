@@ -21,7 +21,7 @@ function show_data(list) {
 	item_str += '<th>登记机关</th>';
 	item_str += '<th>状态</th>';
 	item_str += '<th>统一信用代码</th>';
-	item_str += '<th class="last">操作</th>';
+	item_str += '<th>操作</th>';
 	item_str += '</tr>';
 	$(".listing > tbody").append(item_str);
 	
@@ -43,7 +43,7 @@ function show_data(list) {
 		item_str += '<td id="djjg">' + item.djjg  + '</td>'
 		item_str += '<td id="ztzt">' + item.zt  + '</td>'
 		item_str += '<td id="xydm">' + item.xydm  + '</td>'
-		item_str += '<td class="last"><a href="#" class="btn_del" id="btn_del_' + item.id + '">删除</a></td>';
+		item_str += '<td><a href="#" class="btn_del" id="btn_del_' + item.id + '">删除</a></td>';
 		item_str += '</tr>';
 		$(".listing > tbody").append(item_str);
 	}
@@ -86,7 +86,7 @@ function update_page_nav(data) {
 
 function do_page() {
 	$.getJSON(
-		"ajax_ml_list?page=" + curr_page + "&random=" + Math.random(),
+		"ajax_ml_list?qylx=" + get_menu_param("qylx") + "&page=" + curr_page + "&random=" + Math.random(),
 		function(data) {
 			show_data(data.data.list);
 			update_page_nav(data.data);			
@@ -95,9 +95,9 @@ function do_page() {
 }
 
 $(function() {
-	//alert(window.document.location.href)
+	//alert("ajax_ml_list?qylx=" + encodeURIComponent(get_menu_param("qylx")) + "&random=" + Math.random())
 	$.getJSON(
-		"ajax_ml_list?random=" + Math.random(),
+		"ajax_ml_list?qylx=" + get_menu_param("qylx") + "&random=" + Math.random(),
 		function(data) {
 			if(data.data.page_count == 1) {
 				$(".pagetable").hide(); //只有一页的话就不显示分页导航

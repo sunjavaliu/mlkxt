@@ -2,7 +2,7 @@
 
 web_name = "长沙市统计局工商名录管理系统"
 jquery = "http://ajax.useso.com/ajax/libs/jquery/2.1.1/jquery.min.js" #jquery2.0以上
-page_size = 16
+page_size = 10
 
 #后台菜单，只支持3级
 admin_menu_list = [
@@ -43,7 +43,7 @@ admin_menu_list = [
 			},
 			{
 				"id": 4,
-				"name": "管理员管理",
+				"name": "用户管理",
 				"child_menu": [
 					{
 						"id": 8,
@@ -55,24 +55,50 @@ admin_menu_list = [
 						"name": "管理员列表",
 						"url": "admin_list.html",
 					},
+					{
+						"id": 91,
+						"name": "添加管理员",
+						"url": "admin_add.html",
+					},
 				]
 			},
 			{
 				"id": 10,
-				"name": "名录查询系统",
+				"name": "商事平台数据浏览",
 				"child_menu": [
 					{
 						"id": 11,
-						"name": "工商企业查询",
-						"url": "/qiye/",
+						"name": "企业",
+						"url": "ml_qyxx.html",
+						"param":"qylx:qiye",
+						#param是用于  /admin/ajax_ml_list?qylx=qiye  的参数  在js文件中写入
 					},
 					{
 						"id": 12,
-						"name": "工商企业查询",
+						"name": "个体户",
 						"url": "ml_qyxx.html",
+						"param":"qylx:geti",
 					},
 				]
 			},
+			{
+				"id": 13,
+				"name": "工商数据浏览",
+				"child_menu": [
+					{
+						"id": 14,
+						"name": "新登记企业",
+						"url": "ml_slzx.html",
+						"param":"dengjileixin:new",
+					},
+					{
+						"id": 15,
+						"name": "注销企业",
+						"url": "ml_slzx.html",
+						"param":"dengjileixin:destory",
+					},
+				]
+			},					
 		]
 	},
 	

@@ -4,6 +4,7 @@ from django.db import models
 import json
 import time
 import commons
+from django.db.models import Q
 
 def to_json(obj):
 	fields = []
@@ -24,6 +25,7 @@ class Admin(models.Model):
 	name = models.CharField(max_length = 50)
 	pwd = models.CharField(max_length = 50)
 	add_time = models.IntegerField(default = 0)
+	userlevel = models.IntegerField(default = 0)
 	
 	def toJSON(self):
 		return to_json(self)
@@ -37,7 +39,7 @@ class Admin(models.Model):
 		offset = (page - 1) * page_size
 		limit = offset + page_size
 		admin_list = Admin.objects.all().order_by("-id")[offset:limit]
-	
+		
 		admin_list_json = []
 		for admin in admin_list:		
 			item = json.loads(admin.toJSON())
@@ -217,14 +219,37 @@ class ssdata(models.Model):
 	
 	#获取分页数据，静态方法
 	@staticmethod
-	def getList(page, page_size):
-		total = ssdata.objects.all().count()
+	def getList(page, page_size,dzm,qylx):
+		
+		print("start")
+		print(qylx)
+		if dzm=="430100":
+			if qylx == "qiye" :
+				total=ssdata.objects.exclude(qylx__icontains="个体").count()
+			else:
+				total= data=ssdata.objects.filter(qylx__contains="个体").count()
+		else:
+			if qylx == "qiye" :
+				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).exclude(qylx__icontains="个体").count()
+			else:
+				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).filter(qylx__contains="个体").count()
+		#total = ssdata.objects.all().count()
 		page_count = commons.page_count(total, page_size)
-	
 		offset = (page - 1) * page_size
 		limit = offset + page_size
-		ss_list = ssdata.objects.all().order_by("-id")[offset:limit]
+		#ss_list = ssdata.objects.all().order_by("-id")[offset:limit]
 	
+		if dzm=="430100":
+			if qylx == "qiye" :
+				ss_list=ssdata.objects.exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
+			else:
+				ss_list= data=ssdata.objects.filter(qylx__contains="个体").order_by("-id")[offset:limit]
+		else:
+			if qylx == "qiye" :
+				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
+			else:
+				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).filter(qylx__contains="个体").order_by("-id")[offset:limit]
+
 		ss_list_json = []
 		for ss in ss_list:		
 			item = json.loads(ss.toJSON())
@@ -241,8 +266,7 @@ class ssdata(models.Model):
 			"page": page,
 			"list": ss_list_json,
 		}
-		print("liu2")
-		print(data)
+
 		return data
 	
 	class Meta:
@@ -260,7 +284,63 @@ class gszxdata(models.Model):
 	qiyename = models.TextField()
 	hzriqi = models.TextField()
 	djjg = models.TextField()
+
+
+	def toJSON(self):
+		return to_json(self)
 	
+	#获取分页数据，静态方法
+	@staticmethod
+	def getList(page, page_size,dzm,qylx):
+		
+		print("start")
+		print(qylx)
+		if dzm=="430100":
+			if qylx == "qiye" :
+				total=ssdata.objects.exclude(qylx__icontains="个体").count()
+			else:
+				total= data=ssdata.objects.filter(qylx__contains="个体").count()
+		else:
+			if qylx == "qiye" :
+				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).exclude(qylx__icontains="个体").count()
+			else:
+				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).filter(qylx__contains="个体").count()
+		#total = ssdata.objects.all().count()
+		page_count = commons.page_count(total, page_size)
+		offset = (page - 1) * page_size
+		limit = offset + page_size
+		#ss_list = ssdata.objects.all().order_by("-id")[offset:limit]
+	
+		if dzm=="430100":
+			if qylx == "qiye" :
+				ss_list=ssdata.objects.exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
+			else:
+				ss_list= data=ssdata.objects.filter(qylx__contains="个体").order_by("-id")[offset:limit]
+		else:
+			if qylx == "qiye" :
+				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
+			else:
+				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).filter(qylx__contains="个体").order_by("-id")[offset:limit]
+
+		ss_list_json = []
+		for ss in ss_list:		
+			item = json.loads(ss.toJSON())
+			#item["add_time"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(item["add_time"]))
+			
+			#移除密码
+			#del item["pwd"]
+			ss_list_json.append(item)
+	
+		data = {
+			"page_size": page_size,
+			"page_count": page_count,
+			"total": total,
+			"page": page,
+			"list": ss_list_json,
+		}
+
+		return data
+		
 	def __unicode__(self):
 		return self.name
 	
@@ -280,7 +360,62 @@ class gssldata(models.Model):
 	qiyename = models.TextField()
 	hzriqi = models.TextField()
 	djjg = models.TextField()
+
+
+	def toJSON(self):
+		return to_json(self)
 	
+	#获取分页数据，静态方法
+	@staticmethod
+	def getList(page, page_size,dzm,qylx):
+		
+		print(qylx)
+		if dzm=="430100":
+			if qylx == "qiye" :
+				total=ssdata.objects.exclude(qylx__icontains="个体").count()
+			else:
+				total= data=ssdata.objects.filter(qylx__contains="个体").count()
+		else:
+			if qylx == "qiye" :
+				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)|Q(djjg__icontains(dzm_Dict.get(dzm)))).exclude(qylx__icontains="个体").count()
+			else:
+				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)|Q(djjg__icontains(dzm_Dict.get(dzm)))).filter(qylx__contains="个体").count()
+		#total = ssdata.objects.all().count()
+		page_count = commons.page_count(total, page_size)
+		offset = (page - 1) * page_size
+		limit = offset + page_size
+		#ss_list = ssdata.objects.all().order_by("-id")[offset:limit]
+	
+		if dzm=="430100":
+			if qylx == "qiye" :
+				ss_list=ssdata.objects.exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
+			else:
+				ss_list= data=ssdata.objects.filter(qylx__contains="个体").order_by("-id")[offset:limit]
+		else:
+			if qylx == "qiye" :
+				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)|Q(djjg__icontains(dzm_Dict.get(dzm)))).exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
+			else:
+				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)|Q(djjg__icontains(dzm_Dict.get(dzm)))).filter(qylx__contains="个体").order_by("-id")[offset:limit]
+
+		ss_list_json = []
+		for ss in ss_list:		
+			item = json.loads(ss.toJSON())
+			#item["add_time"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(item["add_time"]))
+			
+			#移除密码
+			#del item["pwd"]
+			ss_list_json.append(item)
+	
+		data = {
+			"page_size": page_size,
+			"page_count": page_count,
+			"total": total,
+			"page": page,
+			"list": ss_list_json,
+		}
+
+		return data
+		
 	def __unicode__(self):
 		return self.name
 	

@@ -12,24 +12,33 @@
 	<script src="../../static/simple/js/jquery/jquery.pagination.js"></script>
 </head>
 <body  style="text-align:center;background-image:url('{% static "ml/img/body_bg.jpg"%}'); background-repeat: repeat-x; " >
-<div style="width:1026px;margin:0px auto;clear:both"> 
-	<img src="{% static "ml/img/banner.jpg"%}"/>
+<div style="width:1210px;margin:0px auto;clear:both"> 
+	<img src="{% static "ml/img/banner1210.gif"%}"/>
 </div> 
 <div id="main">
 	<div id="header">
 		<!--上面的菜单-->
 		
-		<!-- 
+		<!--	
 		<ul id="top-navigation">
 		</ul>
-		-->
+		-->	
 
 	</div>
+
+
 	<div id="middle">
 		<!--参数-->
 		{% csrf_token %}
 		<input type="hidden" id="menu_param" />
 		<!--左边菜单-->
+		<div id="left-column">
+			<strong class="h">当前用户</strong>
+			<div class="box">
+				<div>用户名:{{ request.session.sess_admin.name }}</div>
+				<div><a href="#" id="logout"><b>退出登录</b></a></div>
+			</div>
+	    </div>
 		<div id="left-column">			
 		</div>
 		<div id="center-column">

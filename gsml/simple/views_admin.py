@@ -121,6 +121,7 @@ def ajax_admin_add(request):
 	name = request.GET.get("name")
 	pwd = request.GET.get("pwd")
 	pwd2 = request.GET.get("pwd2")
+	userlevel = request.GET.get("userlevel")
 	
 	if name == "":
 		return commons.res_fail(1, "用户名不能为空")
@@ -136,7 +137,8 @@ def ajax_admin_add(request):
 	admin = Admin(
 		name = name,
 		pwd = pwd,
-		add_time = int(time.time())
+		add_time = int(time.time()),
+		userlevel=userlevel
 	)
 	admin.save()
 	

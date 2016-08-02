@@ -8,19 +8,9 @@ function show_data(list) {
 	//title部分
 	var item_str = '<tr>';
 	item_str += '<th class="first">注册号</th>';
-	item_str += '<th>名称</th>';
-	item_str += '<th>法定代表人</th>';
-	item_str += '<th>主营项目类别</th>';
-	//item_str += '<th>经营范围</th>';
-	item_str += '<th>住所(经营场所)</th>';
-	item_str += '<th>注册资本(万元人民币)</th>';
-	item_str += '<th>商事主体类型</th>';
-	item_str += '<th>成立日期</th>';
-	item_str += '<th>营业期限</th>';
-	item_str += '<th>核发日期</th>';
+	item_str += '<th>企业名称</th>';
+	item_str += '<th>核准日期</th>';
 	item_str += '<th>登记机关</th>';
-	item_str += '<th>状态</th>';
-	item_str += '<th>统一信用代码</th>';
 	item_str += '<th>操作</th>';
 	item_str += '</tr>';
 	$(".listing > tbody").append(item_str);
@@ -31,18 +21,8 @@ function show_data(list) {
 		item_str = '<tr class="bg">';
 		item_str += '<td class="first style1">' + item.zch + '</td>';
 		item_str += '<td id="mc">' + item.mcyename  + '</td>'
-		item_str += '<td id="fddbr">' + item.fddbri  + '</td>'
-		item_str += '<td id="zyxmlb">' + item.zyxmlb  + '</td>'
-		//item_str += '<td id="jyfw">' + item.jyfw  + '</td>'
-		item_str += '<td id="dz">' + item.dz  + '</td>'
-		item_str += '<td id="rjzczb">' + item.rjzczb  + '</td>'
-		item_str += '<td id="qylx">' + item.qylx  + '</td>'
-		item_str += '<td id="clrq">' + item.clrq  + '</td>'
-		item_str += '<td id="yyqx">' + item.yyqx  + '</td>'
-		item_str += '<td id="hzrq">' + item.hzrq  + '</td>'
-		item_str += '<td id="djjg">' + item.djjg  + '</td>'
-		item_str += '<td id="ztzt">' + item.zt  + '</td>'
-		item_str += '<td id="xydm">' + item.xydm  + '</td>'
+		item_str += '<td id="fddbr">' + item.hzriqi  + '</td>'
+		item_str += '<td id="zyxmlb">' + item.djjg  + '</td>'
 		item_str += '<td><a href="#" class="btn_del" id="btn_del_' + item.id + '">删除</a></td>';
 		item_str += '</tr>';
 		$(".listing > tbody").append(item_str);
@@ -86,7 +66,7 @@ function update_page_nav(data) {
 
 function do_page() {
 	$.getJSON(
-		"ajax_ml_list?page=" + curr_page + "&random=" + Math.random(),
+		"ajax_ml_slzx_list?dengjileixin=" + get_menu_param("dengjileixin") + "&page=" + curr_page + "&random=" + Math.random(),
 		function(data) {
 			show_data(data.data.list);
 			update_page_nav(data.data);			
@@ -95,9 +75,9 @@ function do_page() {
 }
 
 $(function() {
-	alert("ajax_ml_list?qylx=" + get_menu_param("qylx") + "&random=" + Math.random(),)
+	//alert("ajax_ml_list?qylx=" + encodeURIComponent(get_menu_param("qylx")) + "&random=" + Math.random())
 	$.getJSON(
-		"ajax_ml_list?qylx=" + get_menu_param("qylx") + "&random=" + Math.random(),
+		"ajax_ml_slzx_list?dengjileixin=" + get_menu_param("dengjileixin") + "&random=" + Math.random(),
 		function(data) {
 			if(data.data.page_count == 1) {
 				$(".pagetable").hide(); //只有一页的话就不显示分页导航
