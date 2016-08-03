@@ -266,7 +266,7 @@ class ssdata(models.Model):
 			"page": page,
 			"list": ss_list_json,
 		}
-
+		print(data)
 		return data
 	
 	class Meta:
@@ -367,35 +367,17 @@ class gssldata(models.Model):
 	
 	#获取分页数据，静态方法
 	@staticmethod
-	def getList(page, page_size,dzm,qylx):
+	def getList(page, page_size,dzm,dengjileixin):
 		
-		print(qylx)
-		if dzm=="430100":
-			if qylx == "qiye" :
-				total=ssdata.objects.exclude(qylx__icontains="个体").count()
-			else:
-				total= data=ssdata.objects.filter(qylx__contains="个体").count()
-		else:
-			if qylx == "qiye" :
-				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)|Q(djjg__icontains(dzm_Dict.get(dzm)))).exclude(qylx__icontains="个体").count()
-			else:
-				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)|Q(djjg__icontains(dzm_Dict.get(dzm)))).filter(qylx__contains="个体").count()
+		total=gssldata.objects.filter()().count()
 		#total = ssdata.objects.all().count()
 		page_count = commons.page_count(total, page_size)
 		offset = (page - 1) * page_size
 		limit = offset + page_size
 		#ss_list = ssdata.objects.all().order_by("-id")[offset:limit]
 	
-		if dzm=="430100":
-			if qylx == "qiye" :
-				ss_list=ssdata.objects.exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
-			else:
-				ss_list= data=ssdata.objects.filter(qylx__contains="个体").order_by("-id")[offset:limit]
-		else:
-			if qylx == "qiye" :
-				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)|Q(djjg__icontains(dzm_Dict.get(dzm)))).exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
-			else:
-				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)|Q(djjg__icontains(dzm_Dict.get(dzm)))).filter(qylx__contains="个体").order_by("-id")[offset:limit]
+
+		ss_list=gssldata.objects.all().order_by("-id")[offset:limit]
 
 		ss_list_json = []
 		for ss in ss_list:		

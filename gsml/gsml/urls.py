@@ -71,6 +71,7 @@ urlpatterns =[
 	url(r'^exportcsv/$', views.exportCSV),
 	url(r'^query/$', views.querydata),
 	url(r'^admin/ajax_ml_list$', views_ml.ajax_ml_list),
+	url(r'^admin/ajax_ml_slzx_list', views_ml.ajax_ml_slzx_list),
 	
 	
 	

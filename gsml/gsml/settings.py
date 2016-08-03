@@ -70,15 +70,15 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': os.path.join(BASE_DIR, 'simple.sqlite3'),
 
-        #'USER': 'root', 
-        #'PASSWORD': '' ,
-        #'HOST':'localhost',
+        'USER': 'root', 
+        'PASSWORD': '' ,
+        'HOST':'localhost',
         
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'danweimingluku',
-        'PASSWORD': 'mysqlpwd',
-        'USER': 'mysql',
-        'HOST':'10.43.18.42',
+        #'PASSWORD': 'mysqlpwd',
+        #'USER': 'mysql',
+        #'HOST':'10.43.18.42',
         'PORT': '3306',
     }
 }
