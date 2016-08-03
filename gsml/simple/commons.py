@@ -7,7 +7,6 @@ from django.shortcuts import render
 from django.http import JsonResponse
 
 
-dzm_Dict = {'430102':'芙蓉','430103':'天心','430104':'岳麓','430105':'开福','430111':'雨花','430112':'望城','430121':'长沙县','430124':'宁乡','430181':'浏阳','430161':'高新'} 
 
 #公用的render函数，主要加入一些公用变量
 def render_template(request, templates, res_data = None):
@@ -19,7 +18,7 @@ def render_template(request, templates, res_data = None):
 
 	if(res_data != None):
 		response_data["res_data"] = res_data
-	print("liuliuliu")
+
 	return render(request, templates, response_data)
 
 #仅在这个模块用到
@@ -31,8 +30,10 @@ def res(res_code, desc, data):
 
 	if data:
 		res_data["data"] = data
-	
+	print("ceshi")
+	print(res_data)
 	response = JsonResponse(res_data)
+	print(response)
 	return response
 
 #回应请求成功

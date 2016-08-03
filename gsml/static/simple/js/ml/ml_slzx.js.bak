@@ -66,7 +66,7 @@ function update_page_nav(data) {
 
 function do_page() {
 	$.getJSON(
-		"ajax_ml_slzx_list?qylx=" + get_menu_param("qylx") + "&page=" + curr_page + "&random=" + Math.random(),
+		"ajax_ml_slzx_list?dengjileixin=" + get_menu_param("dengjileixin") + "&page=" + curr_page + "&random=" + Math.random(),
 		function(data) {
 			show_data(data.data.list);
 			update_page_nav(data.data);			
@@ -77,7 +77,7 @@ function do_page() {
 $(function() {
 	//alert("ajax_ml_list?qylx=" + encodeURIComponent(get_menu_param("qylx")) + "&random=" + Math.random())
 	$.getJSON(
-		"ajax_ml_slzx_list?qylx=" + get_menu_param("qylx") + "&random=" + Math.random(),
+		"ajax_ml_slzx_list?dengjileixin=" + get_menu_param("dengjileixin") + "&random=" + Math.random(),
 		function(data) {
 			if(data.data.page_count == 1) {
 				$(".pagetable").hide(); //只有一页的话就不显示分页导航

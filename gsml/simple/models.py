@@ -6,6 +6,10 @@ import time
 import commons
 from django.db.models import Q
 
+
+dzm_Dict = {'430102':'芙蓉','430103':'天心','430104':'岳麓','430105':'开福','430111':'雨花','430112':'望城','430121':'长沙县','430124':'宁乡','430181':'浏阳','430161':'高新'} 
+
+
 def to_json(obj):
 	fields = []
 	for field in obj._meta.fields:
@@ -291,36 +295,16 @@ class gszxdata(models.Model):
 	
 	#获取分页数据，静态方法
 	@staticmethod
-	def getList(page, page_size,dzm,qylx):
+	def getList(page, page_size,dzm):
 		
-		print("start")
-		print(qylx)
-		if dzm=="430100":
-			if qylx == "qiye" :
-				total=ssdata.objects.exclude(qylx__icontains="个体").count()
-			else:
-				total= data=ssdata.objects.filter(qylx__contains="个体").count()
-		else:
-			if qylx == "qiye" :
-				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).exclude(qylx__icontains="个体").count()
-			else:
-				total=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).filter(qylx__contains="个体").count()
+		total=gszxdata.objects.filter(Q(djjg__contains=dzm_Dict.get(dzm))|Q(zch__startswith="__"+dzm)|Q(zch__startswith=dzm)).count()
 		#total = ssdata.objects.all().count()
 		page_count = commons.page_count(total, page_size)
 		offset = (page - 1) * page_size
 		limit = offset + page_size
 		#ss_list = ssdata.objects.all().order_by("-id")[offset:limit]
 	
-		if dzm=="430100":
-			if qylx == "qiye" :
-				ss_list=ssdata.objects.exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
-			else:
-				ss_list= data=ssdata.objects.filter(qylx__contains="个体").order_by("-id")[offset:limit]
-		else:
-			if qylx == "qiye" :
-				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).exclude(qylx__icontains="个体").order_by("-id")[offset:limit]
-			else:
-				ss_list=ssdata.objects.filter(Q(zch__startswith=dzm)|Q(xydm__startswith="__"+dzm)).filter(qylx__contains="个体").order_by("-id")[offset:limit]
+		ss_list=gszxdata.objects.filter(Q(djjg__contains=dzm_Dict.get(dzm))|Q(zch__startswith="__"+dzm)|Q(zch__startswith=dzm)).order_by("-id")[offset:limit]
 
 		ss_list_json = []
 		for ss in ss_list:		
@@ -367,9 +351,9 @@ class gssldata(models.Model):
 	
 	#获取分页数据，静态方法
 	@staticmethod
-	def getList(page, page_size,dzm,dengjileixin):
+	def getList(page, page_size,dzm):
 		
-		total=gssldata.objects.filter()().count()
+		total=gssldata.objects.filter(Q(djjg__contains=dzm_Dict.get(dzm))|Q(zch__startswith="__"+dzm)|Q(zch__startswith=dzm)).count()
 		#total = ssdata.objects.all().count()
 		page_count = commons.page_count(total, page_size)
 		offset = (page - 1) * page_size
@@ -377,7 +361,7 @@ class gssldata(models.Model):
 		#ss_list = ssdata.objects.all().order_by("-id")[offset:limit]
 	
 
-		ss_list=gssldata.objects.all().order_by("-id")[offset:limit]
+		ss_list=gssldata.objects.filter(Q(djjg__contains=dzm_Dict.get(dzm))|Q(zch__startswith="__"+dzm)|Q(zch__startswith=dzm)).order_by("-id")[offset:limit]
 
 		ss_list_json = []
 		for ss in ss_list:		

@@ -20,7 +20,7 @@ function show_data(list) {
 		
 		item_str = '<tr class="bg">';
 		item_str += '<td class="first style1">' + item.zch + '</td>';
-		item_str += '<td id="mc">' + item.mcyename  + '</td>'
+		item_str += '<td id="mc">' + item.qiyename  + '</td>'
 		item_str += '<td id="fddbr">' + item.hzriqi  + '</td>'
 		item_str += '<td id="zyxmlb">' + item.djjg  + '</td>'
 		item_str += '<td><a href="#" class="btn_del" id="btn_del_' + item.id + '">删除</a></td>';
@@ -62,12 +62,14 @@ function update_page_nav(data) {
 	};
 	
 	$("#Pagination").pagination(data.total, opt);
+	
 }
 
 function do_page() {
 	$.getJSON(
 		"ajax_ml_slzx_list?dengjileixin=" + get_menu_param("dengjileixin") + "&page=" + curr_page + "&random=" + Math.random(),
 		function(data) {
+			
 			show_data(data.data.list);
 			update_page_nav(data.data);			
 		}
@@ -88,6 +90,10 @@ $(function() {
 				show_data(data.data.list);				
 				update_page_nav(data.data);
 			}
+			if (get_menu_param("dengjileixin")=="zhuxiao")
+				$("#export").append("<a href='/exportfiletype=gszx&filename=my.csv'>注销数据导出</a>");
+			if (get_menu_param("dengjileixin")=="sheli")
+				$("#export").append("<a href='/exportfiletype=gsdj&filename\=my.csv'>新登导出数据</a>");
 		}
 	);
 	

@@ -82,6 +82,7 @@ function update_page_nav(data) {
 	};
 	
 	$("#Pagination").pagination(data.total, opt);
+
 }
 
 function do_page() {

@@ -3,7 +3,8 @@
 web_name = "长沙市统计局工商名录管理系统"
 jquery = "http://ajax.useso.com/ajax/libs/jquery/2.1.1/jquery.min.js" #jquery2.0以上
 page_size = 10
-
+gs_Page_size=20
+ss_Page_size=10
 #后台菜单，只支持3级
 admin_menu_list = [
 	{ 
@@ -13,92 +14,78 @@ admin_menu_list = [
 		"child_menu": [
 			{
 				"id": 2,
-				"name": "数据管理",
+				"name": "用户维护",
 				"child_menu": [
 					{
-						"id": 5,
-						"name": "分类列表",
-						"url": "dataclass_list.html",
-						"param": "type:1", #demo type:1,id:2
-					},
+						"id": 3,
+						"name": "添加用户",
+						"url": "admin_add.html",
+					},					
 					{
-						"id": 6,
-						"name": "数据列表",
-						"url": "data_list.html",
-						"param": "type:1",
-					},
-				]
-			},
-			{
-				"id": 3,
-				"name": "区域管理",
-				"child_menu": [
-					{
-						"id": 7,
-						"name": "区域管理1",
-						"url": "art_single.html",
-						"param": "id:1",
-					},
-				]
-			},
-			{
-				"id": 4,
-				"name": "用户管理",
-				"child_menu": [
-					{
-						"id": 8,
-						"name": "修改密码",
-						"url": "admin_pwd.html",
-					},
-					{
-						"id": 9,
-						"name": "管理员列表",
+						"id": 4,
+						"name": "用户列表",
 						"url": "admin_list.html",
 					},
 					{
-						"id": 91,
-						"name": "添加管理员",
-						"url": "admin_add.html",
+						"id": 5,
+						"name": "修改密码",
+						"url": "admin_pwd.html",
 					},
 				]
 			},
 			{
-				"id": 10,
+				"id": 6,
 				"name": "商事平台数据浏览",
 				"child_menu": [
 					{
-						"id": 11,
-						"name": "企业",
+						"id": 7,
+						"name": "浏览企业数据",
 						"url": "ml_qyxx.html",
 						"param":"qylx:qiye",
 						#param是用于  /admin/ajax_ml_list?qylx=qiye  的参数  在js文件中写入
 					},
 					{
-						"id": 12,
-						"name": "个体户",
+						"id": 8,
+						"name": "浏览个体户数据",
 						"url": "ml_qyxx.html",
 						"param":"qylx:geti",
 					},
 				]
 			},
 			{
-				"id": 13,
+				"id": 9,
 				"name": "工商数据浏览",
 				"child_menu": [
 					{
-						"id": 14,
+						"id": 10,
 						"name": "新登记企业",
 						"url": "ml_slzx.html",
-						"param":"dengjileixin:new",
+						"param":"dengjileixin:sheli",
 					},
 					{
-						"id": 15,
+						"id": 11,
 						"name": "注销企业",
 						"url": "ml_slzx.html",
-						"param":"dengjileixin:destory",
+						"param":"dengjileixin:zhuxiao",
 					},
 				]
-			},					
+			},		
+			{
+				"id": 12,
+				"name": "快速链接",
+				"child_menu": [
+					{
+						"id": 13,
+						"name": "长沙市商事平台",
+						"url": "ml_slzx.html",
+					},
+					{
+						"id": 14,
+						"name": "长沙市工商局平台",
+						"url": "ml_slzx.html",
+					},
+				]
+			},				
 		]
 	},
 	

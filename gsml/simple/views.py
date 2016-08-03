@@ -150,7 +150,7 @@ def exportCSV(request):
             writer.writerow([unicode(s).encode("utf-8") for s in row])
 
     if exportfiletype=='ssgt':
-        data=ssdata.objects.exclude(qylx__contains="个体")
+        data=ssdata.objects.filter(qylx__icontains="个体")
         
         row=[u'注册号',u'名称',u'法定代表人',u'主营项目类别',u'住所(经营场所)',u'注册资本',u'商事主体类型',u'成立日期',u'营业期限',u'核发日期',u'登记机关',u'状态',u'经营范围',u'统一社会信用代码 ']
         writer.writerow([unicode(s).encode("utf-8") for s in row])

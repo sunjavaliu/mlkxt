@@ -199,7 +199,7 @@ ul.navhide {
 	display:block;
 	width:142px;
 	height:25px;
-	/*background:url(../images/bg-left-link.gif);*/
+	background:url(../images/bg-left-link.gif);
 	/*background:url(../../ml/img/nav_li_hover.gif);*/
 	margin:0 0 4px 0;
 	font-weight:bold;
@@ -407,3 +407,22 @@ div.table .select select {
 	margin:0 0 6px 0;
 }
 
+
+.export {
+            font-size: 12px;
+			margin-top: 10px
+        }
+        
+.export a {
+    text-decoration: none;
+	border: solid 1px #AAE;
+	color: #15B;
+}
+
+.export a, .export span {
+    display: block;
+    float: left;
+    padding: 0.3em 0.5em;
+    margin-right: 5px;
+	margin-bottom: 5px;
+}
